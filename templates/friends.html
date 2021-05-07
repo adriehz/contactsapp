@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+
+	<div class="container">
+    <h1>Contact List</h1>
+    <br/>
+    <form action="/friends" METHOD="POST">
+      <input type="text" placeholder="Name" name="name">
+      <input type="text" placeholder="Last Name" name="lastname">
+      <input type="email" placeholder="Email" name="email">
+      <input type="text" placeholder="Company" name="company">
+      <input type="number" placeholder="Phone Number" name="phone" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+    type = "number"
+    maxlength = "10">
+      <input type="submit" value= "Add Contact" class = "btn btn-secondary">
+    </form>
+
+  <br></br>
+
+  <table style="width:85%", font-size:120%>
+  <TR>
+    <th>Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Company</th>
+    <th>Phone</th>
+  </TR>
+  {% for friend in friends %}
+
+  <TR>
+   <TD class="c1">{{friend.name}}</TD>
+   <TD class="c2">{{friend.lastname}}</TD>
+   <TD class="c3">{{friend.email}}</TD>
+   <TD class="c4"><SPAN>{{friend.company}}</SPAN></TD>
+   <TD class="c5"><SPAN>{{friend.phone}}</SPAN></TD>
+   <TD class="c6"><a href ="/update/{{friend.id}}" class="btn btn-outline-secondary btn-sm">Update</a> </TD>
+   <TD class="c6"><a href ="/delete/{{friend.id}}" class="btn btn-outline-danger btn-sm">Delete</a> </TD>
+  </TR>
+  {% endfor %}
+  </table>
+</div>
+
+{% endblock %}
